@@ -3,602 +3,193 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#0a0a0a">
+    <meta name="description" content="Portfolio of Parvinderkaur Sodhi — Salesforce Developer working across enterprise automation, integrations, and personal AI/ML projects.">
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎍</text></svg>">
-    <title>Parvinderkaur Sodhi - Portfolio</title>
+    <title>Parvinderkaur Sodhi | Software Developer</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        :root {
+            color-scheme: dark;
+            --background: #0a0a0a;
+            --panel: rgba(255, 255, 255, 0.045);
+            --panel-hover: rgba(255, 255, 255, 0.075);
+            --border: rgba(255, 255, 255, 0.12);
+            --text: #cccccc;
+            --bright: #ffffff;
+            --muted: #a6a6a6;
+            --radius: 20px;
         }
-
+        html { scroll-behavior: smooth; scroll-padding-top: 24px; }
         body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            line-height: 1.6;
-            color: #cccccc;
-            background: #0a0a0a;
+            font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            line-height: 1.65;
+            color: var(--text);
+            background: var(--background);
             min-height: 100vh;
             overflow-x: hidden;
         }
+        a { color: inherit; }
+        a:focus-visible, button:focus-visible { outline: 2px solid #fff; outline-offset: 4px; }
 
         /* Animated background */
         .animated-bg {
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
+            inset: 0;
             z-index: -1;
             opacity: 0.1;
+            pointer-events: none;
+            overflow: hidden;
         }
-
-        .floating-shapes {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-        }
-
+        .floating-shapes, .particles { position: absolute; inset: 0; }
         .shape {
             position: absolute;
-            background: rgba(255, 255, 255, 0.03);
+            bottom: -120px;
+            background: rgba(255, 255, 255, 0.035);
+            border: 1px solid rgba(255, 255, 255, 0.05);
             border-radius: 50%;
-            animation: float 20s infinite linear;
+            animation: float 24s infinite linear;
+            will-change: transform;
         }
-
-        .shape:nth-child(1) {
-            width: 80px;
-            height: 80px;
-            left: 10%;
-            animation-delay: 0s;
-        }
-
-        .shape:nth-child(2) {
-            width: 60px;
-            height: 60px;
-            left: 20%;
-            animation-delay: 5s;
-        }
-
-        .shape:nth-child(3) {
-            width: 100px;
-            height: 100px;
-            left: 60%;
-            animation-delay: 10s;
-        }
-
-        .shape:nth-child(4) {
-            width: 40px;
-            height: 40px;
-            left: 80%;
-            animation-delay: 15s;
-        }
-
+        .shape:nth-child(1) { width: 80px; height: 80px; left: 10%; animation-delay: 0s; }
+        .shape:nth-child(2) { width: 60px; height: 60px; left: 20%; animation-delay: 5s; }
+        .shape:nth-child(3) { width: 100px; height: 100px; left: 60%; animation-delay: 10s; }
+        .shape:nth-child(4) { width: 40px; height: 40px; left: 80%; animation-delay: 15s; }
         @keyframes float {
-            0% {
-                transform: translateY(100vh) rotate(0deg);
-                opacity: 0;
-            }
-            10% {
-                opacity: 1;
-            }
-            90% {
-                opacity: 1;
-            }
-            100% {
-                transform: translateY(-100px) rotate(360deg);
-                opacity: 0;
-            }
+            0% { transform: translateY(0) rotate(0deg); opacity: 0; }
+            10%, 90% { opacity: 1; }
+            100% { transform: translateY(-120vh) rotate(360deg); opacity: 0; }
         }
-
-        .particles {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-        }
-
         .particle {
             position: absolute;
             width: 2px;
             height: 2px;
-            background: rgba(255, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 0.35);
             border-radius: 50%;
-            animation: twinkle 3s infinite;
+            animation: twinkle 4s infinite ease-in-out;
         }
+        @keyframes twinkle { 0%, 100% { opacity: 0.15; } 50% { opacity: 1; } }
 
-        @keyframes twinkle {
-            0%, 100% { opacity: 0; }
-            50% { opacity: 1; }
+        .container { width: min(1160px, 100%); margin: 0 auto; padding: 24px; position: relative; z-index: 1; }
+        .glass {
+            background: var(--panel);
+            -webkit-backdrop-filter: blur(16px);
+            backdrop-filter: blur(16px);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
         }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px;
-            position: relative;
-            z-index: 1;
-        }
-
         header {
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 20px;
-            padding: 60px 40px;
-            margin-bottom: 40px;
+            padding: clamp(34px, 6vw, 68px) clamp(20px, 5vw, 44px);
+            margin: 24px 0 32px;
             text-align: center;
             position: relative;
             overflow: hidden;
         }
-
         header::before {
-            content: '';
+            content: "";
             position: absolute;
-            top: 0;
-            left: -100%;
+            inset: 0 auto 0 -100%;
             width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.05), transparent);
-            animation: shimmer 4s infinite;
-        }
-
-        @keyframes shimmer {
-            0% { left: -100%; }
-            100% { left: 100%; }
-        }
-
-        .profile-section {
-            position: relative;
-            z-index: 2;
-        }
-
-        .profile-img {
-            width: 120px;
-            height: 120px;
-            margin: 0 auto 30px;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.1);
-            border: 2px solid rgba(255, 255, 255, 0.2);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 50px;
-            position: relative;
-            overflow: hidden;
-            animation: pulse 2s ease-in-out infinite;
-        }
-
-        @keyframes pulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-        }
-
-        .profile-img::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: conic-gradient(transparent, rgba(255,255,255,0.1), transparent);
-            animation: rotate 3s linear infinite;
-        }
-
-        @keyframes rotate {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-
-        h1 {
-            font-size: 3em;
-            margin-bottom: 15px;
-            color: #ffffff;
-            font-weight: 700;
-            letter-spacing: -1px;
-            animation: fadeInUp 1s ease-out;
-        }
-
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .tagline {
-            font-size: 1.2em;
-            color: #cccccc;
-            margin-bottom: 30px;
-            animation: fadeInUp 1s ease-out 0.2s both;
-        }
-
-        .contact-info {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            flex-wrap: wrap;
-            animation: fadeInUp 1s ease-out 0.4s both;
-        }
-
-        .contact-info a {
-            color: #ffffff;
-            text-decoration: none;
-            padding: 12px 25px;
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            border-radius: 30px;
-            transition: all 0.3s ease;
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(10px);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .contact-info a::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
-            transition: left 0.5s;
-        }
-
-        .contact-info a:hover::before {
-            left: 100%;
-        }
-
-        .contact-info a:hover {
-            transform: translateY(-2px);
-            border-color: rgba(255, 255, 255, 0.5);
-            box-shadow: 0 5px 20px rgba(255, 255, 255, 0.1);
-        }
-
-        .section {
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 20px;
-            padding: 50px;
-            margin-bottom: 40px;
-            position: relative;
-            overflow: hidden;
-            animation: slideInUp 0.8s ease-out;
-        }
-
-        @keyframes slideInUp {
-            from {
-                opacity: 0;
-                transform: translateY(50px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .section::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 1px;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-        }
-
-        .section h2 {
-            font-size: 2.2em;
-            margin-bottom: 40px;
-            color: #ffffff;
-            position: relative;
-            padding-bottom: 15px;
-            font-weight: 600;
-        }
-
-        .section h2::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 60px;
-            height: 2px;
-            background: rgba(255, 255, 255, 0.3);
-        }
-
-        /* Experience Section */
-        .job {
-            border-left: 2px solid rgba(255, 255, 255, 0.3);
-            padding-left: 1.5rem;
-            margin-bottom: 2rem;
-            position: relative;
-            background: rgba(255, 255, 255, 0.02);
-            border-radius: 10px;
-            padding: 25px;
-            transition: all 0.3s ease;
-        }
-
-        .job:hover {
-            background: rgba(255, 255, 255, 0.05);
-            transform: translateX(10px);
-        }
-
-        .job::before {
-            content: '';
-            position: absolute;
-            left: -5px;
-            top: 30px;
-            width: 8px;
-            height: 8px;
-            background: #ffffff;
-            border-radius: 50%;
-            box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
-        }
-
-        .job h3 {
-            color: #ffffff;
-            margin-bottom: 0.5rem;
-            font-size: 1.3em;
-            font-weight: 600;
-        }
-
-        .job .company {
-            color: #ffffff;
-            font-weight: 500;
-            opacity: 0.9;
-            font-size: 1.1em;
-        }
-
-        .job .duration {
-            color: #cccccc;
-            font-size: 0.9rem;
-            margin-bottom: 1rem;
-            opacity: 0.8;
-        }
-
-        .job p {
-            color: #cccccc;
-            line-height: 1.6;
-        }
-
-        .job ul {
-            margin-left: 1rem;
-            color: #cccccc;
-        }
-
-        .job li {
-            margin-bottom: 0.5rem;
-            line-height: 1.6;
-        }
-
-        .projects-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 30px;
-        }
-
-        .project-card {
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 15px;
-            padding: 30px;
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-            transform: translateY(20px);
-            opacity: 0;
-            animation: cardSlideIn 0.6s ease-out forwards;
-        }
-
-        .project-card:nth-child(1) { animation-delay: 0.1s; }
-        .project-card:nth-child(2) { animation-delay: 0.2s; }
-        .project-card:nth-child(3) { animation-delay: 0.3s; }
-
-        @keyframes cardSlideIn {
-            to {
-                transform: translateY(0);
-                opacity: 1;
-            }
-        }
-
-        .project-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(255, 255, 255, 0.02);
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-
-        .project-card:hover::before {
-            opacity: 1;
-        }
-
-        .project-card:hover {
-            transform: translateY(-10px);
-            border-color: rgba(255, 255, 255, 0.2);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-        }
-
-        .project-card h3 {
-            color: #ffffff;
-            margin-bottom: 20px;
-            font-size: 1.4em;
-            font-weight: 600;
-        }
-
-        .project-card p {
-            color: #cccccc;
-            margin-bottom: 20px;
-            line-height: 1.6;
-        }
-
-        .tech-stack {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-            margin-bottom: 20px;
-        }
-
-        .tech-tag {
-            background: rgba(255, 255, 255, 0.1);
-            color: #ffffff;
-            padding: 6px 15px;
-            border-radius: 20px;
-            font-size: 0.85em;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            transition: all 0.3s ease;
-        }
-
-        .tech-tag:hover {
-            background: rgba(255, 255, 255, 0.15);
-            transform: translateY(-2px);
-        }
-
-        .project-links {
-            display: flex;
-            gap: 15px;
-        }
-
-        .project-links a {
-            color: #ffffff;
-            text-decoration: none;
-            padding: 10px 20px;
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            border-radius: 25px;
-            transition: all 0.3s ease;
-            font-size: 0.9em;
-            background: rgba(255, 255, 255, 0.05);
-            cursor: pointer;
-            position: relative;
-            z-index: 10;
-        }
-
-        .project-links a:hover {
-            background: rgba(255, 255, 255, 0.15);
-            transform: translateY(-2px);
-            border-color: rgba(255, 255, 255, 0.5);
-            box-shadow: 0 5px 15px rgba(255, 255, 255, 0.1);
-        }
-
-        .project-links a.disabled {
-            opacity: 0.5;
-            cursor: not-allowed;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.045), transparent);
+            animation: shimmer 7s infinite;
             pointer-events: none;
         }
-
-        .skills-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 25px;
+        @keyframes shimmer { to { left: 100%; } }
+        .profile-section { position: relative; z-index: 1; }
+        .profile-img {
+            width: 104px; height: 104px; margin: 0 auto 22px;
+            border-radius: 50%; border: 1px solid rgba(255,255,255,.22);
+            background: rgba(255,255,255,.06); display: grid; place-items: center;
+            font-size: 42px; position: relative; isolation: isolate; overflow: hidden;
+            animation: pulse 4s ease-in-out infinite;
         }
-
-        .skill-category {
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            padding: 30px;
-            border-radius: 15px;
-            text-align: center;
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
+        .profile-img::before {
+            content: ""; position: absolute; inset: -70%; z-index: -1;
+            background: conic-gradient(transparent, rgba(255,255,255,.16), transparent 35%);
+            animation: rotate 8s linear infinite;
         }
-
-        .skill-category::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.05), transparent);
-            transition: left 0.5s;
+        @keyframes pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.025); } }
+        @keyframes rotate { to { transform: rotate(360deg); } }
+        h1 { color: var(--bright); font-size: clamp(2rem, 5vw, 3.25rem); line-height: 1.15; letter-spacing: -1.3px; margin-bottom: 14px; }
+        .eyebrow { color: var(--muted); font-size: .78rem; text-transform: uppercase; letter-spacing: .18em; margin-bottom: 12px; }
+        .tagline { max-width: 720px; margin: 0 auto 24px; font-size: clamp(1rem, 2vw, 1.15rem); color: #d0d0d0; }
+        .contact-info { display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; }
+        .contact-info a, .project-links a, .text-link {
+            display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+            color: var(--bright); text-decoration: none; border: 1px solid rgba(255,255,255,.22);
+            border-radius: 999px; padding: 10px 17px; background: rgba(255,255,255,.035);
+            transition: background .2s ease, border-color .2s ease, transform .2s ease;
         }
-
-        .skill-category:hover::before {
-            left: 100%;
+        .contact-info a:hover, .project-links a:hover, .text-link:hover { background: rgba(255,255,255,.11); border-color: rgba(255,255,255,.45); transform: translateY(-2px); }
+        .nav {
+            position: sticky; top: 12px; z-index: 20; display: flex; justify-content: center;
+            flex-wrap: wrap; gap: 4px; padding: 10px; margin-bottom: 32px;
+            background: rgba(15,15,15,.82); -webkit-backdrop-filter: blur(18px); backdrop-filter: blur(18px);
+            border: 1px solid var(--border); border-radius: 999px;
         }
+        .nav a { color: #dedede; text-decoration: none; padding: 8px 12px; border-radius: 999px; font-size: .9rem; transition: background .2s ease, color .2s ease; }
+        .nav a:hover, .nav a:focus-visible { color: #fff; background: rgba(255,255,255,.1); }
+        .section { padding: clamp(24px, 4vw, 44px); margin-bottom: 28px; position: relative; overflow: hidden; scroll-margin-top: 90px; }
+        .section.is-visible { animation: sectionReveal .45s ease-out both; }
+        @keyframes sectionReveal { from { opacity: .78; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+        .section h2 { color: var(--bright); font-size: clamp(1.65rem, 3vw, 2.15rem); line-height: 1.25; margin-bottom: 28px; padding-bottom: 14px; position: relative; }
+        .section h2::after { content: ""; position: absolute; bottom: 0; left: 0; width: 54px; height: 2px; background: rgba(255,255,255,.45); }
+        .section-intro { color: var(--muted); margin: -12px 0 26px; max-width: 760px; }
 
-        .skill-category:hover {
-            transform: translateY(-5px);
-            background: rgba(255, 255, 255, 0.08);
+        /* Experience Section */
+        .timeline { display: grid; gap: 16px; }
+        .job {
+            border-left: 2px solid rgba(255,255,255,.28); padding: 22px 24px;
+            background: rgba(255,255,255,.025); border-radius: 0 14px 14px 0;
+            transition: background .2s ease, transform .2s ease;
         }
+        .job:hover { background: rgba(255,255,255,.055); transform: translateX(3px); }
+        .job h3, .project-card h3, .skill-category h3, .education-item h3, .achievement-item h3, .cert-card h3 { color: var(--bright); line-height: 1.4; margin-bottom: 8px; font-size: 1.12rem; }
+        .company { color: #eee; font-weight: 600; }
+        .duration { color: var(--muted); font-size: .9rem; margin: 3px 0 12px; }
+        .job ul { padding-left: 20px; margin-top: 12px; }
+        .job li { margin: 0 0 8px; padding-left: 3px; }
+        .job li:last-child { margin-bottom: 0; }
 
-        .skill-category h3 {
-            color: #ffffff;
-            margin-bottom: 20px;
-            font-size: 1.3em;
+        .projects-grid, .skills-grid, .cert-grid, .solutions-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; }
+        .project-card, .skill-category, .education-item, .achievement-item, .cert-card, .solution-card {
+            min-width: 0; background: rgba(255,255,255,.028); border: 1px solid var(--border);
+            border-radius: 16px; padding: 24px; position: relative; overflow: hidden;
+            transition: background .2s ease, border-color .2s ease, transform .2s ease;
         }
-
-        .skill-list {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-            justify-content: center;
+        .project-card:hover, .skill-category:hover, .education-item:hover, .achievement-item:hover, .cert-card:hover, .solution-card:hover {
+            background: var(--panel-hover); border-color: rgba(255,255,255,.23); transform: translateY(-3px);
         }
-
-        .skill-item {
-            background: rgba(255, 255, 255, 0.1);
-            color: #ffffff;
-            padding: 8px 15px;
-            border-radius: 20px;
-            font-size: 0.9em;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            transition: all 0.3s ease;
+        .project-card p, .solution-card p, .education-item p, .achievement-item p, .cert-card p { margin-bottom: 14px; }
+        .project-card p:last-child, .solution-card p:last-child, .education-item p:last-child, .achievement-item p:last-child, .cert-card p:last-child { margin-bottom: 0; }
+        .project-card h3 { font-size: 1.15rem; margin-bottom: 12px; }
+        .project-label { display: inline-block; color: var(--muted); font-size: .76rem; letter-spacing: .09em; text-transform: uppercase; margin-bottom: 10px; }
+        .tech-stack, .skill-list { display: flex; flex-wrap: wrap; gap: 8px; margin: 18px 0; }
+        .tech-tag, .skill-item {
+            display: inline-flex; align-items: center; padding: 5px 10px; border-radius: 999px;
+            font-size: .8rem; color: #eee; border: 1px solid rgba(255,255,255,.13); background: rgba(255,255,255,.055);
         }
-
-        .skill-item:hover {
-            background: rgba(255, 255, 255, 0.15);
-            transform: translateY(-2px);
-        }
-
-        .achievement-item, .education-item {
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            color: #cccccc;
-            padding: 25px;
-            border-radius: 15px;
-            margin-bottom: 25px;
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .achievement-item::before, .education-item::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 3px;
-            height: 100%;
-            background: rgba(255, 255, 255, 0.3);
-        }
-
-        .achievement-item:hover, .education-item:hover {
-            transform: translateX(10px);
-            background: rgba(255, 255, 255, 0.08);
-        }
-
-        .achievement-item h3, .education-item h3 {
-            margin-bottom: 10px;
-            font-size: 1.2em;
-            color: #ffffff;
-        }
-
-        .achievement-item p, .education-item p {
-            color: #cccccc;
-            line-height: 1.6;
-        }
-
-        .achievement-item strong, .education-item strong {
-            color: #ffffff;
-        }
+        .project-links { display: flex; flex-wrap: wrap; gap: 9px; margin-top: 18px; }
+        .project-links a { font-size: .86rem; padding: 8px 14px; }
+        .project-note { color: var(--muted); font-size: .84rem; font-style: italic; }
+        .skills-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+        .skill-category h3 { margin-bottom: 4px; }
+        .skill-category p { color: var(--muted); font-size: .9rem; }
+        .skill-list { margin-bottom: 0; }
+        .solutions-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+        .solution-card h3 { color: var(--bright); margin-bottom: 8px; font-size: 1.05rem; }
+        .solution-card p { font-size: .94rem; }
+        .education-list, .achievement-list, .membership-list { display: grid; gap: 16px; }
+        .education-item, .achievement-item { margin: 0; }
+        .education-item strong, .achievement-item strong { color: #fff; }
+        .cert-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+        .cert-card { padding: 20px; }
+        .cert-card h3 { font-size: 1rem; }
+        .cert-card p { color: var(--muted); font-size: .88rem; }
+        .cert-icon { display: block; font-size: 1.4rem; margin-bottom: 12px; }
+        .small-list { padding-left: 20px; }
+        .small-list li { margin-bottom: 8px; }
+        .text-link { margin-top: 18px; font-size: .9rem; }
 
         /* Contact Section */
         /*.contact-grid {
@@ -606,7 +197,6 @@
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 30px;
         }
-
         .contact-card {
             background: rgba(255, 255, 255, 0.05);
             border: 1px solid rgba(255, 255, 255, 0.1);
@@ -617,7 +207,6 @@
             position: relative;
             overflow: hidden;
         }
-
         .contact-card::before {
             content: '';
             position: absolute;
@@ -632,7 +221,6 @@
         .contact-card:hover::before {
             left: 100%;
         }
-
         .contact-card:hover {
             transform: translateY(-10px);
             background: rgba(255, 255, 255, 0.08);
@@ -650,7 +238,6 @@
             margin-bottom: 15px;
             font-size: 1.3em;
         }
-
         .contact-card p {
             color: #cccccc;
             margin-bottom: 20px;
@@ -667,195 +254,43 @@
             background: rgba(255, 255, 255, 0.05);
             display: inline-block;
         }
-
         .contact-card a:hover {
             background: rgba(255, 255, 255, 0.15);
             transform: translateY(-2px);
             box-shadow: 0 5px 15px rgba(255, 255, 255, 0.1);
         }*/
 
-        .nav {
-            position: fixed;
-            top: 30px;
-            right: 30px;
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 50px;
-            padding: 20px;
-            z-index: 1000;
-            transition: all 0.3s ease;
-            max-width: calc(100vw - 60px);
-            overflow-x: auto;
+        footer { text-align: center; padding: 24px 12px 12px; color: var(--muted); border-top: 1px solid rgba(255,255,255,.1); margin-top: 10px; font-size: .9rem; }
+        footer p + p { margin-top: 4px; }
+
+        @media (max-width: 900px) {
+            .skills-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+            .cert-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+            .nav { border-radius: 18px; }
         }
-
-        .nav:hover {
-            background: rgba(255, 255, 255, 0.1);
+        @media (max-width: 640px) {
+            .container { padding: 12px; }
+            header { margin-top: 12px; margin-bottom: 18px; }
+            .nav { position: relative; top: auto; margin-bottom: 18px; padding: 8px; gap: 3px; }
+            .nav a { padding: 8px 10px; font-size: .84rem; }
+            .section { padding: 24px 18px; margin-bottom: 18px; border-radius: 16px; }
+            .section h2 { margin-bottom: 22px; }
+            .projects-grid, .skills-grid, .cert-grid, .solutions-grid { grid-template-columns: 1fr; }
+            .job { padding: 18px; }
+            .project-card, .skill-category, .education-item, .achievement-item, .cert-card, .solution-card { padding: 20px; }
+            .contact-info { gap: 8px; }
+            .contact-info a { padding: 9px 13px; font-size: .88rem; }
+            .project-links a { padding: 8px 12px; }
+            .tech-stack { margin: 14px 0; }
         }
-
-        .nav a {
-            color: #ffffff;
-            text-decoration: none;
-            margin: 0 15px;
-            font-weight: 500;
-            transition: all 0.3s ease;
-            position: relative;
-        }
-
-        .nav a::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 0;
-            height: 1px;
-            background: #ffffff;
-            transition: width 0.3s ease;
-        }
-
-        .nav a:hover::after {
-            width: 100%;
-        }
-
-        .nav a:hover {
-            color: #ffffff;
-            text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
-        }
-
-        footer {
-            text-align: center;
-            padding: 20px;
-            color: #cccccc;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            margin-top: 40px;
-        }
-
-        @media (max-width: 768px) {
-            .container {
-                padding: 15px;
-            }
-            
-            header {
-                padding: 40px 25px;
-            }
-            
-            h1 {
-                font-size: 2.2em;
-            }
-            
-            .section {
-                padding: 30px 25px;
-            }
-            
-            .contact-info {
-                flex-direction: column;
-                align-items: center;
-            }
-            
-            .nav {
-                position: static;
-                margin-bottom: 20px;
-                text-align: center;
-                padding: 15px;
-                border-radius: 25px;
-                top: auto;
-                right: auto;
-                max-width: 100%;
-            }
-
-            .nav a {
-                margin: 0 8px;
-                font-size: 0.9em;
-                display: inline-block;
-            }
-            
-            .projects-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .contact-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .tagline {
-                font-size: 1.1em;
-            }
-            
-            .contact-info a {
-                padding: 10px 20px;
-                font-size: 0.9em;
-            }
-            
-            .section h2 {
-                font-size: 1.8em;
-            }
-            
-            .job {
-                padding: 20px;
-                margin-left: 0;
-                border-left: none;
-                border-top: 2px solid rgba(255, 255, 255, 0.3);
-                padding-top: 20px;
-            }
-            
-            .job::before {
-                display: none;
-            }
-            
-            .project-card, .skill-category, .achievement-item, .education-item {
-                padding: 20px;
-            }
-            
-            .tech-stack {
-                justify-content: center;
-            }
-            
-            .project-links {
-                justify-content: center;
-                flex-wrap: wrap;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .container {
-                padding: 10px;
-            }
-            
-            header {
-                padding: 30px 20px;
-            }
-            
-            h1 {
-                font-size: 1.8em;
-            }
-            
-            .section {
-                padding: 20px 15px;
-            }
-            
-            .nav a {
-                margin: 0 5px;
-                font-size: 0.8em;
-            }
-            
-            .projects-grid,
-            .skills-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .contact-info {
-                gap: 10px;
-            }
-            
-            .contact-info a {
-                padding: 8px 15px;
-                font-size: 0.8em;
-            }
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
+            .animated-bg { opacity: .035; }
         }
     </style>
 </head>
 <body>
-    <div class="animated-bg">
+    <div class="animated-bg" aria-hidden="true">
         <div class="floating-shapes">
             <div class="shape"></div>
             <div class="shape"></div>
@@ -865,269 +300,317 @@
         <div class="particles" id="particles"></div>
     </div>
 
-    <nav class="nav">
-        <a href="#home">Home</a>
-        <a href="#experience">Experience</a>
-        <a href="#projects">Projects</a>
-        <a href="#skills">Skills</a>
-        <a href="#education">Education</a>
-        <a href="#achievements">Achievements</a>
-         <a href="#memberships">Memberships</a>
-        <!--<a href="#contact">Contact</a>-->
-    </nav>
-
     <div class="container">
-        <header id="home">
+        <header id="home" class="glass">
             <div class="profile-section">
-                <div class="profile-img">🚀</div>
+                <div class="profile-img" aria-hidden="true">🚀</div>
+                <p class="eyebrow">Software Developer · Builder · Lifelong Learner</p>
                 <h1>Parvinderkaur Sodhi</h1>
-                <p class="tagline">Developer || Tech Nut || Sports Junkie</p>
-                <div class="contact-info">
+                <p class="tagline">I build Salesforce solutions, automate business workflows, and explore AI/ML through hands-on projects. You may call me Tech Nut or Sports Junkie.</p>
+                <div class="contact-info" aria-label="Profile and contact links">
                     <a href="mailto:parvinder@sodhi.in">📧 Email</a>
-                    <a href="https://linkedin.com/in/parvinderkaur-sodhi-682245206/" target="_blank">💼 LinkedIn</a>
-                    <a href="https://github.com/Parvinderkaur-Sodhi" target="_blank">💻 GitHub</a>
-                    <a href="https://leetcode.com/u/Parvinderkaur_Sodhi/" target="_blank">💻 LeetCode</a>
-                    <a href="https://www.salesforce.com/trailblazer/parvinderkaursodhi" target="_blank">💻 TrailHead</a>
-                    <a href="" target="_blank">🎨 AI-ML Lab</a>
-                    <a href="tel:">📱 Phone</a>
+                    <a href="https://www.linkedin.com/in/parvinderkaur-sodhi-682245206/" target="_blank" rel="noopener noreferrer">💼 LinkedIn</a>
+                    <a href="https://github.com/Parvinderkaur-Sodhi" target="_blank" rel="noopener noreferrer">💻 GitHub</a>
+                    <a href="https://leetcode.com/u/Parvinderkaur_Sodhi/" target="_blank" rel="noopener noreferrer">🧩 LeetCode</a>
+                    <a href="https://www.salesforce.com/trailblazer/parvinderkaursodhi" target="_blank" rel="noopener noreferrer">☁️ Trailblazer</a>
                 </div>
             </div>
         </header>
 
-        <section id="experience" class="section">
-            <h2>Experience</h2>
-            
-            <div class="job">
-                <h3>Salesforce Developer</h3>
-                <div class="company">Axis Bank - FinTech</div>
-                <div class="duration">November 2023 - Present</div>
-                <p>
-                <ul>
-                    <li><p>Salesforce Development: Experience with LWC, Visualforce, Apex classes, triggers, and custom metadata.</p></li>
-                    <li><p>Automation & Optimization: Streamlined operations using Flows, Process Builder, OmniStudio, and validation rules.</p></li>
-                    <li><p>Integrations: Delivered secure, scalable integrations via REST APIs and Platform Events; reducing user effort by 80%.</p></li>
-                    <li><p>Security & Performance: Enhanced system access controls, optimized code/debugging, and ensured data integrity.</p></li>
-                    <li><p>Projects & Contributions: Digitized Nano and Working Capital Loan journeys, increasing application throughput by 40%; delivered multiple end-to-end solutions and POCs aligned with business goals.</p></li>
-                </ul>
-            </p>
-            </div>
-            
-            <div class="job">
-                <h3>Development, Automation and Testing Intern</h3>
-                <div class="company">Endress + Hauser</div>
-                <div class="duration">July 2022 - August 2022</div>
-                <p>Worked on various real-time and live projects, specializing in manual and automated testing, development, and gaining insights into RPA development. Engaged with international counterparts in meetings and client sessions to understand requirements and provide solutions. Bug report composition and debugging & writing automation scripts.
-</p>
-            </div>
-            
-            <div class="job">
-                <h3>Web Developer Intern</h3>
-                <div class="company">BDS - University of Limerick</div>
-                <div class="duration">Jan 2022 - Feb 2022</div>
-                <p>Created a live website using HTML, CSS, Bootstrap, and JavaScript for BDS, a partner of the University of Limerick. This practical experience honed my client-focused development skills and provided valuable insights into the development process. Visit our live webpage at <a>https://bds.ul.ie/</a>.</p>
-            </div>
-        </section>
+        <nav class="nav glass" aria-label="Main navigation">
+            <a href="#home">Home</a>
+            <a href="#experience">Experience</a>
+            <a href="#salesforce-solutions">Salesforce</a>
+            <a href="#projects">Projects</a>
+            <a href="#skills">Skills</a>
+            <a href="#certifications">Certifications</a>
+            <a href="#education">Education</a>
+            <a href="#achievements">Achievements</a>
+            <a href="#memberships">Leadership</a>
+            <!--<a href="#contact">Contact</a>-->
+        </nav>
 
-        <section class="section" id="projects">
-            <h2>Featured Projects</h2>
-            <div class="projects-grid">
-                <div class="project-card">
-                    <h3>🚀 BDS website - BDS department of University of Limerick</h3>
-                    <p>This project was my first professional endeavor, utilizing HTML, CSS, Bootstrap, and JavaScript. It provided a valuable learning experience, expanding my skills and knowledge in web development. I am grateful for the journey and the new horizons it has opened.
-</p></p>
-                    <div class="tech-stack">
-                        <span class="tech-tag">HTML</span>
-                        <span class="tech-tag">JavaScript</span>
-                    </div>
-                    <div class="project-links">
-                        <a href="https://bds.ul.ie/" target="_blank">Live Demo</a>
-                        <a href="https://github.com/aryankaremore09/BDS-website/tree/main" target="_blank" rel="noopener noreferrer">GitHub</a>
-                    </div>
+        <main>
+            <section id="experience" class="section glass">
+                <h2>Experience</h2>
+                <div class="timeline">
+                    <article class="job">
+                        <h3>Salesforce Developer</h3>
+                        <div class="company">Axis Bank — Fintech</div>
+                        <div class="duration">November 2023 – Present · Mumbai, India</div>
+                        <ul>
+                            <li>Develop and maintain Salesforce solutions using Apex, triggers, Lightning Web Components (LWC), Flows, OmniStudio, custom metadata, and validation rules.</li>
+                            <li>Build and support REST integrations for identity/access management, employment verification, and deduplication, with monitoring and troubleshooting for production issues.</li>
+                            <li>Contribute to digital lending journeys across Bharat Banking, Working Capital, Home Loans, Education Loans, and Nano Loans.</li>
+                            <li>Develop reusable automation and metadata-driven forms to reduce manual work; one workflow reduced field-user effort by approximately 60%.</li>
+                            <li>Support production incidents, root-cause analysis, controlled releases, and deployment conflict resolution in collaboration with business and QA teams.</li>
+                        </ul>
+                    </article>
+                    <article class="job">
+                        <h3>Development, Automation and Testing Intern</h3>
+                        <div class="company">Endress+Hauser</div>
+                        <div class="duration">July 2022 – August 2022</div>
+                        <p>Worked across development, manual and automated testing, RPA exploration, debugging, and bug reporting. Collaborated with international counterparts to understand requirements and discuss solutions.</p>
+                    </article>
+                    <article class="job">
+                        <h3>Web Developer Intern</h3>
+                        <div class="company">BDS — University of Limerick</div>
+                        <div class="duration">January 2022 – February 2022</div>
+                        <p>Helped build a live website using HTML, CSS, Bootstrap, and JavaScript, gaining experience in practical web development and client-focused delivery.</p>
+                        <div class="project-links"><a href="https://bds.ul.ie/" target="_blank" rel="noopener noreferrer">View website ↗</a></div>
+                    </article>
                 </div>
-                
-                <div class="project-card">
-                    <h3>🎯 MIS System</h3>
-                    <p>During our final year project, we embarked on developing a comprehensive Student Management System from scratch. Starting with data collection and table creation, we utilized React, Bootstrap, and Material UI to code the front-end, ensuring a user-friendly and visually appealing interface. This hands-on experience allowed us to showcase our skills in system development, database management, and front-end design, providing a valuable contribution to our college community.</p>
-                    <div class="tech-stack">
-                        <span class="tech-tag">React</span>
-                        <span class="tech-tag">Bootstrap</span>
-                        <span class="tech-tag">MySQL</span>
-                    </div>
-                    <div class="project-links">
-                        <a href="#" class="disabled">Live Demo</a>
-                        <a href="https://github.com/Tejas-0808/mis" target="_blank" rel="noopener noreferrer">GitHub</a>
-                    </div>
-                </div>
-                
-                <div class="project-card">
-                    <h3>⚡ Leave Management System</h3>
-                    <p>Solely developed a system to efficiently track and manage leaves for an organization. Included user-friendly filters and a calendar view for easy access to leave information. Leveraging and increasing efficiency by more than 40% by implementing strategies and technologies to optimize processes.</p>
-                    <div class="tech-stack">
-                        <span class="tech-tag">Java</span>
-                        <span class="tech-tag">Hibernate/SpringBoot</span>
-                        <span class="tech-tag">MySQL</span>
-                        <span class="tech-tag">React</span>
-                    </div>
-                    <div class="project-links">
-                        <a href="#" class="disabled">Live Demo</a>
-                        <a href="https://github.com/Parvinderkaur-Sodhi/Mini_Project_LMS" target="_blank" rel="noopener noreferrer">GitHub</a>
-                    </div>
-                </div>
-            </div>
-        </section>
+            </section>
 
-        <section class="section" id="skills">
-            <h2>Technical Skills</h2>
-            <div class="skills-grid">
-                <div class="skill-category">
-                    <h3>Frontend Development</h3>
-                    <div class="skill-list">
-                        <span class="skill-item">Apex/Java</span>
-                        <span class="skill-item">JavaScript</span>
-                        <span class="skill-item">React</span>
-                    </div>
+            <section id="salesforce-solutions" class="section glass">
+                <h2>Selected Salesforce Solutions</h2>
+                <p class="section-intro">Examples of the types of business problems I work on professionally. These are high-level descriptions only; internal code, customer data, and confidential implementation details are not published.</p>
+                <div class="solutions-grid">
+                    <article class="solution-card">
+                        <h3>Metadata-Driven Dynamic Forms</h3>
+                        <p>Built configurable LWC forms driven by custom metadata for sections, fields, validations, and formulas, allowing form changes without hard-coded UI updates.</p>
+                        <div class="tech-stack"><span class="tech-tag">LWC</span><span class="tech-tag">Apex</span><span class="tech-tag">Custom Metadata</span></div>
+                    </article>
+                    <article class="solution-card">
+                        <h3>Integration Monitoring & Alerting</h3>
+                        <p>Developed monitoring and scheduled reporting for integration endpoints, request/response status records, failures, and service availability.</p>
+                        <div class="tech-stack"><span class="tech-tag">Apex</span><span class="tech-tag">REST APIs</span><span class="tech-tag">Schedulers</span></div>
+                    </article>
+                    <article class="solution-card">
+                        <h3>Partner User Batch Approval</h3>
+                        <p>Supported a controlled onboarding workflow with batch processing, approval steps, automated permission assignment, and audit tracking.</p>
+                        <div class="tech-stack"><span class="tech-tag">Apex</span><span class="tech-tag">Flows</span><span class="tech-tag">Access Control</span></div>
+                    </article>
+                    <article class="solution-card">
+                        <h3>Inbound Document Processing</h3>
+                        <p>Worked on a document intake process for email-submitted files, triage, and association with relevant loan records, with multi-channel collection exploration.</p>
+                        <div class="tech-stack"><span class="tech-tag">Salesforce</span><span class="tech-tag">Automation</span><span class="tech-tag">Integrations</span></div>
+                    </article>
+                    <article class="solution-card">
+                        <h3>OTP-Based MFA for Experience Cloud</h3>
+                        <p>Implemented a custom OTP verification flow to add an additional authentication step for external users.</p>
+                        <div class="tech-stack"><span class="tech-tag">Experience Cloud</span><span class="tech-tag">Apex</span><span class="tech-tag">Security</span></div>
+                    </article>
+                    <article class="solution-card">
+                        <h3>Agentforce Document Validation POC</h3>
+                        <p>Explored Prompt Builder and Agentforce capabilities in a proof of concept for document classification and AI-assisted validation.</p>
+                        <div class="tech-stack"><span class="tech-tag">Agentforce</span><span class="tech-tag">Prompt Builder</span><span class="tech-tag">AI</span></div>
+                    </article>
                 </div>
-                
-                <div class="skill-category">
-                    <h3>Backend Development</h3>
-                    <div class="skill-list">
-                        <span class="skill-item">Node.js</span>
-                        <span class="skill-item">Python</span>
-                        <span class="skill-item">REST APIs</span>
-                    </div>
+            </section>
+
+            <section id="projects" class="section glass">
+                <h2>Projects</h2>
+                <p class="section-intro">A mix of Salesforce, AI/ML, data engineering, and application development. Links are shown only where a public repository or live page is available.</p>
+                <div class="projects-grid">
+                    <article class="project-card">
+                        <span class="project-label">Featured · In progress</span>
+                        <h3>🧪 My AI / ML Lab</h3>
+                        <p>A personal learning app for experimenting with AI/ML tools. Current work includes a data analyzer for CSV files, with previews, missing-value and duplicate checks, and numeric summaries; the broader lab explores speech and computer-vision experiments.</p>
+                        <div class="tech-stack"><span class="tech-tag">Python</span><span class="tech-tag">FastAPI</span><span class="tech-tag">Pandas</span><span class="tech-tag">AI/ML</span></div>
+                        <p class="project-note">Repository/demo link will be added when the project is ready to publish.</p>
+                    </article>
+                    <article class="project-card">
+                        <span class="project-label">Salesforce · Personal project</span>
+                        <h3>📚 Library Management System</h3>
+                        <p>A Salesforce-based library system for managing books, borrowers, memberships, and lending status, with Apex and Flow automation and WhatsApp-based borrower self-service experiments.</p>
+                        <div class="tech-stack"><span class="tech-tag">Salesforce</span><span class="tech-tag">Apex</span><span class="tech-tag">Flows</span><span class="tech-tag">REST API</span></div>
+                        <p class="project-note">Public repository link not available yet.</p>
+                    </article>
+                    <article class="project-card">
+                        <span class="project-label">Machine learning · Hackathon</span>
+                        <h3>🩺 Healthcare Patient Prioritization</h3>
+                        <p>Worked with clinical datasets to explore predicting treatment urgency, including preprocessing, feature engineering, normalization, and model evaluation.</p>
+                        <div class="tech-stack"><span class="tech-tag">Python</span><span class="tech-tag">Pandas</span><span class="tech-tag">Scikit-learn</span><span class="tech-tag">Machine Learning</span></div>
+                        <p class="project-note">Top 10 finalist in an international ML hackathon.</p>
+                    </article>
+                    <article class="project-card">
+                        <span class="project-label">Data engineering</span>
+                        <h3>🔄 Twitter/X ETL Pipeline</h3>
+                        <p>An API-based data pipeline concept/project for extracting social data, transforming and processing it with Python, and storing processed datasets in Amazon S3 for analysis.</p>
+                        <div class="tech-stack"><span class="tech-tag">Python</span><span class="tech-tag">Tweepy</span><span class="tech-tag">Pandas</span><span class="tech-tag">AWS S3</span></div>
+                        <p class="project-note">Public repository link not available yet.</p>
+                    </article>
+                    <article class="project-card">
+                        <span class="project-label">Backend · Application development</span>
+                        <h3>🏢 HRMS & Internal Job Portal</h3>
+                        <p>A human-resources and internal job portal project built around REST APIs and a microservice-oriented backend, with authentication and role-based access control.</p>
+                        <div class="tech-stack"><span class="tech-tag">Java</span><span class="tech-tag">Spring Boot</span><span class="tech-tag">Hibernate</span><span class="tech-tag">JWT</span><span class="tech-tag">RBAC</span></div>
+                        <p class="project-note">Add a repository link when a public version is available.</p>
+                    </article>
+                    <article class="project-card">
+                        <span class="project-label">Web development · Live</span>
+                        <h3>🌐 BDS Website</h3>
+                        <p>Contributed to a live website for BDS using core web technologies, including layout and responsive front-end work.</p>
+                        <div class="tech-stack"><span class="tech-tag">HTML</span><span class="tech-tag">CSS</span><span class="tech-tag">Bootstrap</span><span class="tech-tag">JavaScript</span></div>
+                        <div class="project-links">
+                            <a href="https://bds.ul.ie/" target="_blank" rel="noopener noreferrer">Live website ↗</a>
+                            <a href="https://github.com/aryankaremore09/BDS-website/tree/main" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
+                        </div>
+                    </article>
+                    <article class="project-card">
+                        <span class="project-label">College project</span>
+                        <h3>🎯 MIS System</h3>
+                        <p>A management information system built as a team project, covering data organization and a user-facing interface for managing information.</p>
+                        <div class="tech-stack"><span class="tech-tag">React</span><span class="tech-tag">Bootstrap</span><span class="tech-tag">Material UI</span><span class="tech-tag">MySQL</span></div>
+                        <div class="project-links"><a href="https://github.com/Tejas-0808/mis" target="_blank" rel="noopener noreferrer">GitHub ↗</a></div>
+                    </article>
+                    <article class="project-card">
+                        <span class="project-label">Application development</span>
+                        <h3>⚡ Leave Management System</h3>
+                        <p>A leave-management application with filters and a calendar view to help users track leave information and requests.</p>
+                        <div class="tech-stack"><span class="tech-tag">Java</span><span class="tech-tag">Spring Boot</span><span class="tech-tag">Hibernate</span><span class="tech-tag">MySQL</span><span class="tech-tag">React</span></div>
+                        <div class="project-links"><a href="https://github.com/Parvinderkaur-Sodhi/Mini_Project_LMS" target="_blank" rel="noopener noreferrer">GitHub ↗</a></div>
+                    </article>
                 </div>
-                
-                <div class="skill-category">
-                    <h3>Database & DevOps</h3>
-                    <div class="skill-list">
-                        <span class="skill-item">MongoDB</span>
-                        <span class="skill-item">PostgreSQL</span>
-                        <span class="skill-item">Git</span>
-                    </div>
+            </section>
+
+            <section id="skills" class="section glass">
+                <h2>Technical Skills</h2>
+                <div class="skills-grid">
+                    <article class="skill-category"><h3>Salesforce Development</h3><p>Platform configuration and custom development</p><div class="skill-list"><span class="skill-item">Apex</span><span class="skill-item">Triggers</span><span class="skill-item">LWC</span><span class="skill-item">Flows</span><span class="skill-item">OmniStudio</span><span class="skill-item">Custom Metadata</span><span class="skill-item">Experience Cloud</span></div></article>
+                    <article class="skill-category"><h3>Integrations & Automation</h3><p>Connecting systems and automating workflows</p><div class="skill-list"><span class="skill-item">REST APIs</span><span class="skill-item">JSON</span><span class="skill-item">Authentication</span><span class="skill-item">Workflow Automation</span><span class="skill-item">Debugging</span><span class="skill-item">Production Support</span></div></article>
+                    <article class="skill-category"><h3>Programming</h3><p>Languages used across work and projects</p><div class="skill-list"><span class="skill-item">Python</span><span class="skill-item">Java</span><span class="skill-item">JavaScript</span><span class="skill-item">SQL</span><span class="skill-item">HTML</span><span class="skill-item">CSS</span></div></article>
+                    <article class="skill-category"><h3>Backend & Databases</h3><p>Application development fundamentals</p><div class="skill-list"><span class="skill-item">Spring Boot</span><span class="skill-item">Hibernate</span><span class="skill-item">FastAPI</span><span class="skill-item">PostgreSQL</span><span class="skill-item">MySQL</span><span class="skill-item">MongoDB</span></div></article>
+                    <article class="skill-category"><h3>Data & AI/ML</h3><p>Analytics and hands-on experimentation</p><div class="skill-list"><span class="skill-item">Pandas</span><span class="skill-item">NumPy</span><span class="skill-item">Scikit-learn</span><span class="skill-item">TensorFlow/Keras</span><span class="skill-item">Whisper</span><span class="skill-item">Data Analysis</span></div></article>
+                    <article class="skill-category"><h3>Tools & Delivery</h3><p>Development, testing, and collaboration</p><div class="skill-list"><span class="skill-item">Git/GitHub</span><span class="skill-item">Workbench</span><span class="skill-item">Postman</span><span class="skill-item">VS Code</span><span class="skill-item">Manual Testing</span><span class="skill-item">RPA Fundamentals</span></div></article>
                 </div>
-            </div>
-        </section>
+            </section>
 
-        <section class="section" id="education">
-            <h2>Education</h2>
-            <!--<div class="education-item">
-                <h3>🎓 ePGD </h3>
-                <p><strong>IIT Bombay</strong> | 2025 - 2026</p>
-                <p>Relevant coursework: Data Structures, Algorithms and AI/ML.</p>
-                <p>GPA: 0.0/0.0</p>
-            </div>-->
-            
-            <div class="education-item">
-                <h3>🎓 Bachelor of Technology in Information Technology</h3>
-                <p><strong>Government College of Engineering, Aurangabad.</strong> | 2019 - 2023</p>
-                <p>Relevant coursework: Data Structures, Algorithms, Database Systems, Software Engineering</p>
-                <p>GPA: 8.5/10.0</p>
-            </div>
-        </section>
-
-        <section class="section" id="achievements">
-            <h2>Achievements & Awards</h2>
-            <!--<div class="achievement-item">
-                <h3>🏆 Global Hackathon Champion</h3>
-                <p><strong>TechCrunch Disrupt 2023</strong></p>
-                <p>Led a team of 5 developers to victory in the world's largest tech competition. Built an AI-powered solution that attracted over $2M in funding offers.</p>
-            </div>
-            
-            <div class="achievement-item">
-                <h3>🌟 7th Place Finisher, National Entrepreneurship Challenge - NEC IITB</h3>
-                <p><strong>NEC IITB</strong></p>
-                <p>Blended entrepreneurship with tech expertise to address complex problems, achieving impressive results.</p>
-            </div>-->
-            
-            <div class="achievement-item">
-                <h3>🏆 Hackathon Winner</h3>
-                <p><strong>Evathon 2021 - Machine learning Hackathon</strong></p>
-                <p>Placed in Top 10 winner's for innovative AI-powered solution. Led a team of 4 developers to create a revolutionary product in 48 hours.</p>
-            </div>
-
-            <div class="achievement-item">
-                <h3>🌟 7th Place Finisher, National Entrepreneurship Challenge - NEC IITB</h3>
-                <p><strong>NEC IITB</strong></p>
-                <p>Blended entrepreneurship with tech expertise to address complex problems, achieving impressive results.</p>
-            </div>
-            
-            <div class="achievement-item">
-                <h3>📝 State-Level Soccer Competitor</h3>
-                <p><strong>State Tournament</strong></p>
-                <p>Demonstrated leadership as team captain and co-captain, contributing to team success in numerous matches and competitions.</p>
-            </div>
-        </section>
-
-        <section class="section" id="memberships">
-            <h2>Memberships</h2>
-            <div class="education-item">
-                <h3>🗂️ Data Acquisition (DAQ) Mate and Finance & Documentation Head (BAJA)</h3>
-                <p><strong>Team Aryans Racing, Government College of Engineering, Aurangabad (GECA).</strong> | May 2021 - Apr 2022</p>
-                <p>Utilized MATLAB and Simulink for data analysis, programmed Arduino for real-time data acquisition. Managed documentation, finances, and team website; plus a co-driver.</p>
-            </div>
-            
-            <div class="education-item">
-                <h3>👨🏻‍💻 Web and Tech Team Coordinator</h3>
-                <p><strong>Entrepreneurship Development Cell, Government College of Engineering, Aurangabad (GECA).</strong> | Apr 2021 - Sep 2022</p>
-                <p>Designed and managed the organization's website and conducted various activities fostering awareness about entrepreneurship.</p>
-            </div>
-
-             <div class="education-item">
-                <h3>❤️ Event Coordinator</h3>
-                <p><strong>Epic Foundation Pune.</strong> | Nov 2021 - Jan 2022</p>
-                <p>Volunteered to empower differently-abled individuals, to showcase talents.</p>
-            </div>
-        </section>
-
-        <!--<section id="contact" class="contact">
-        <div class="container">
-            <h2>Get In Touch</h2>
-            <form class="contact-form">
-                <div class="form-group">
-                    <label for="name">Name</label>
-                    <input type="text" id="name" name="name" required>
+            <section id="certifications" class="section glass">
+                <h2>Certifications</h2>
+                <div class="cert-grid">
+                    <article class="cert-card"><span class="cert-icon">☁️</span><h3>Salesforce Platform Administrator</h3><p>September 2026</p></article>
+                    <article class="cert-card"><span class="cert-icon">🧩</span><h3>Salesforce Platform App Builder</h3><p>June 2026</p></article>
+                    <article class="cert-card"><span class="cert-icon">🤖</span><h3>Salesforce Agentforce Specialist</h3><p>December 2024</p></article>
+                    <article class="cert-card"><span class="cert-icon">💻</span><h3>Salesforce Platform Developer I</h3><p>November 2024</p></article>
+                    <article class="cert-card"><span class="cert-icon">✨</span><h3>Salesforce AI Associate</h3><p>November 2024</p></article>
+                    <article class="cert-card"><span class="cert-icon">📊</span><h3>Google Data Analytics Professional Certificate</h3><p>August 2024</p></article>
                 </div>
-                <div class="form-group">
-                    <label for="email">Email</label>
-                    <input type="email" id="email" name="email" required>
+                <a class="text-link" href="https://www.salesforce.com/trailblazer/parvinderkaursodhi" target="_blank" rel="noopener noreferrer">View Trailblazer profile ↗</a>
+            </section>
+
+            <section id="education" class="section glass">
+                <h2>Education</h2>
+                <!--<div class="education-item">
+                    <h3>🎓 BS in Management and Data Science </h3>
+                    <p><strong>IIT Madras</strong> | 2026 - Present</p>
+                    <p>Relevant coursework: Data Structures, Algorithms and AI/ML.</p>
+                    <p>GPA: 7.5/10.0</p>
+                </div>-->
+                <div class="education-list">
+                    <article class="education-item">
+                        <h3>🎓 Bachelor of Technology in Information Technology</h3>
+                        <p><strong>Government College of Engineering, Aurangabad</strong> | August 2019 – May 2023</p>
+                        <p>CGPA: 8.4/10.0</p>
+                        <p>Relevant coursework: Data Structures, Algorithms, Database Systems, and Software Engineering.</p>
+                    </article>
                 </div>
-                <div class="form-group">
-                    <label for="message">Message</label>
-                    <textarea id="message" name="message" rows="5" required></textarea>
+            </section>
+
+            <section id="achievements" class="section glass">
+                <h2>Achievements & Awards</h2>
+                <!--<div class="achievement-item">
+                    <h3>🏆 Global Hackathon Champion</h3>
+                    <p><strong>TechCrunch Disrupt 2023</strong></p>
+                    <p>Led a team of 5 developers to victory in the world's largest tech competition. Built an AI-powered solution that attracted over $2M in funding offers.</p>
                 </div>
-                <button type="submit" class="submit-btn">Send Message</button>
-            </form>
-        </div>
-    </section>-->
+
+                <div class="achievement-item">
+                    <h3>🌟 7th Place Finisher, National Entrepreneurship Challenge - NEC IITB</h3>
+                    <p><strong>NEC IITB</strong></p>
+                    <p>Blended entrepreneurship with tech expertise to address complex problems, achieving impressive results.</p>
+                </div>-->
+                <div class="achievement-list">
+                    <article class="achievement-item">
+                        <h3>🏆 Top 10 Finalist — Evathon 2021 ML Hackathon</h3>
+                        <p><strong>Machine Learning Hackathon</strong></p>
+                        <p>Collaborated on an AI/ML solution during the hackathon, placing among the Top 10 finalist teams.</p>
+                    </article>
+                    <article class="achievement-item">
+                        <h3>🌟 7th Place — National Entrepreneurship Challenge</h3>
+                        <p><strong>NEC, IIT Bombay</strong></p>
+                        <p>Contributed to a team challenge combining entrepreneurial thinking, coordination, and problem-solving.</p>
+                    </article>
+                    <article class="achievement-item">
+                        <h3>🏀 University Basketball & Sports</h3>
+                        <p>Represented the university in basketball and West Zone matches; recognized as Best Rebounder.</p>
+                    </article>
+                </div>
+            </section>
+
+            <section id="memberships" class="section glass">
+                <h2>Leadership & Volunteering</h2>
+                <div class="membership-list">
+                    <article class="education-item">
+                        <h3>🏎️ Data Acquisition Mate & Finance/Documentation Head — BAJA</h3>
+                        <p><strong>Team Aryans Racing, Government College of Engineering, Aurangabad</strong> | May 2021 – April 2022</p>
+                        <p>Worked with MATLAB and Simulink for data analysis, programmed Arduino for real-time data acquisition, and supported documentation, finances, and team website tasks.</p>
+                    </article>
+                    <article class="education-item">
+                        <h3>💻 Web & Tech Team Coordinator</h3>
+                        <p><strong>Entrepreneurship Development Cell, GECA</strong> | April 2021 – September 2022</p>
+                        <p>Helped manage the organization's website and supported activities that promoted entrepreneurship.</p>
+                    </article>
+                    <article class="education-item">
+                        <h3>❤️ Event Coordinator</h3>
+                        <p><strong>Epic Foundation, Pune</strong> | November 2021 – January 2022</p>
+                        <p>Volunteered in events that provided people with disabilities opportunities to showcase their talents.</p>
+                    </article>
+                </div>
+            </section>
+
+            <!--<section id="contact" class="contact">
+                <div class="container">
+                    <h2>Get In Touch</h2>
+                    <form class="contact-form">
+                        <div class="form-group">
+                            <label for="name">Name</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Message</label>
+                            <textarea id="message" name="message" rows="5" required></textarea>
+                        </div>
+                        <button type="submit" class="submit-btn">Send Message</button>
+                    </form>
+                </div>
+            </section>-->
+        </main>
+
+        <footer>
+            <p>&copy; <span id="year">2026</span> Parvinderkaur Sodhi. Built with HTML, CSS, and JavaScript.</p>
+            <p>&& Coffeeless Love 😉</p>
+        </footer>
     </div>
-
-    <footer>
-        <p>&copy; 2025 Parvinderkaur Sodhi Built with HTML, CSS, and JavaScript.</p>
-         <p>&& Coffeeless Love 😉</p>
-    </footer>
 
     <script>
         // Smooth scrolling for navigation links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
+                const target = document.querySelector(this.getAttribute('href'));
+                if (!target) return;
                 e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
+                target.scrollIntoView({ behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' });
             });
         });
 
         // Create particles
         function createParticles() {
             const particlesContainer = document.getElementById('particles');
-            const particleCount = 50;
-            
+            if (!particlesContainer || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+            // Keep the effect subtle while avoiding unnecessary DOM work.
+            const particleCount = window.innerWidth < 640 ? 12 : 24;
             for (let i = 0; i < particleCount; i++) {
                 const particle = document.createElement('div');
                 particle.className = 'particle';
                 particle.style.left = Math.random() * 100 + '%';
                 particle.style.top = Math.random() * 100 + '%';
-                particle.style.animationDelay = Math.random() * 3 + 's';
+                particle.style.animationDelay = Math.random() * 4 + 's';
                 particlesContainer.appendChild(particle);
             }
         }
@@ -1135,32 +618,30 @@
         // Initialize animations
         document.addEventListener('DOMContentLoaded', function() {
             createParticles();
-            
-            // Intersection Observer for scroll animations
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.style.animationPlayState = 'running';
-                    }
-                });
-            });
 
-            document.querySelectorAll('.section').forEach(section => {
-                observer.observe(section);
-            });
+            // Intersection Observer for scroll animations
+            // Keep this observer available for any sections that opt into scroll animation later.
+            if ('IntersectionObserver' in window) {
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add('is-visible');
+                            observer.unobserve(entry.target);
+                        }
+                    });
+                }, { threshold: 0.08 });
+                document.querySelectorAll('.section').forEach(section => observer.observe(section));
+            }
         });
 
         // Add scroll effect to navigation
-        window.addEventListener('scroll', function() {
-            const nav = document.querySelector('.nav');
-            if (window.scrollY > 100) {
-                nav.style.background = 'rgba(255,255,255,0.1)';
-                nav.style.borderColor = 'rgba(255,255,255,0.2)';
-            } else {
-                nav.style.background = 'rgba(255,255,255,0.05)';
-                nav.style.borderColor = 'rgba(255,255,255,0.1)';
-            }
-        });
+        const nav = document.querySelector('.nav');
+        if (nav) {
+            window.addEventListener('scroll', function() {
+                nav.style.background = window.scrollY > 100 ? 'rgba(22,22,22,0.92)' : 'rgba(15,15,15,0.82)';
+            }, { passive: true });
+        }
+        document.getElementById('year').textContent = new Date().getFullYear();
     </script>
 </body>
 </html>
