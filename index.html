@@ -140,16 +140,23 @@
         .timeline { display: grid; gap: 16px; }
         .job {
             border-left: 2px solid rgba(255,255,255,.28); padding: 22px 24px;
-            background: rgba(255,255,255,.025); border-radius: 0 14px 14px 0;
+            background: rgba(255,255,255,.025); border-radius: 14px;
             transition: background .2s ease, transform .2s ease;
         }
         .job:hover { background: rgba(255,255,255,.055); transform: translateX(3px); }
         .job h3, .project-card h3, .skill-category h3, .education-item h3, .achievement-item h3, .cert-card h3 { color: var(--bright); line-height: 1.4; margin-bottom: 8px; font-size: 1.12rem; }
         .company { color: #eee; font-weight: 600; }
         .duration { color: var(--muted); font-size: .9rem; margin: 3px 0 12px; }
-        .job ul { padding-left: 20px; margin-top: 12px; }
+        .job ul { list-style: disc; padding-left: 22px; margin-top: 12px; }
         .job li { margin: 0 0 8px; padding-left: 3px; }
+        .job li::marker { color: rgba(255,255,255,.72); }
         .job li:last-child { margin-bottom: 0; }
+        /* Keep education details easy to scan without adding visual clutter. */
+        #education .education-item p { position: relative; padding-left: 17px; }
+        #education .education-item p::before {
+            content: "•"; position: absolute; left: 2px; top: 0;
+            color: rgba(255,255,255,.72);
+        }
 
         .projects-grid, .skills-grid, .cert-grid, .solutions-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; }
         .project-card, .skill-category, .education-item, .achievement-item, .cert-card, .solution-card {
@@ -304,9 +311,9 @@
         <header id="home" class="glass">
             <div class="profile-section">
                 <div class="profile-img" aria-hidden="true">🚀</div>
-                <p class="eyebrow">Software Developer · Builder · Lifelong Learner</p>
+                <p class="eyebrow">Software Developer · Builder/Tech Nut ⚡ · Lifelong Learner . Sports Junkie 🏀</p>
                 <h1>Parvinderkaur Sodhi</h1>
-                <p class="tagline">I build Salesforce solutions, automate business workflows, and explore AI/ML through hands-on projects. You may call me Tech Nut or Sports Junkie.</p>
+                <p class="tagline">I build Salesforce solutions, automate business workflows, and explore AI/ML through hands-on projects.</p>
                 <div class="contact-info" aria-label="Profile and contact links">
                     <a href="mailto:parvinder@sodhi.in">📧 Email</a>
                     <a href="https://www.linkedin.com/in/parvinderkaur-sodhi-682245206/" target="_blank" rel="noopener noreferrer">💼 LinkedIn</a>
